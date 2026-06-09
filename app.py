@@ -145,7 +145,7 @@ def product_detail(urun_id):
     selected_product = None
     
     for p in products:
-        if p.get('id') == urun_id:
+        if str(p.get('id')) == str(urun_id):
             selected_product = p
             break
             

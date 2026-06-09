@@ -1,83 +1,93 @@
 {% extends "base.html" %}
 
-{% block title %}{{ product.name_tr }} Teknik Özellikleri | Çukurova Vida{% endblock %}
-{% block meta_description %}{{ product.name_tr }} ({{ product.norm }}) ölçüleri, mukavemet kalitesi ve kaplama seçenekleri. Projenize özel stoktan hızlı teslimat.{% endblock %}
+{% set p_name = product.name_en if current_lang == 'en' else product.name_tr %}
+{% set p_cat = product.category_en if current_lang == 'en' else product.category_tr %}
+{% set p_head = product.head_en if current_lang == 'en' else product.head_tr %}
+{% set p_coating = product.coating_en if current_lang == 'en' else product.coating_tr %}
+
+{% block title %}{{ p_name }} {% if current_lang == 'en' %}Technical Specifications{% else %}Teknik Özellikleri{% endif %} | Çukurova Vida{% endblock %}
+{% block meta_description %}{{ p_name }} ({{ product.norm }}) {% if current_lang == 'en' %}dimensions, strength grade, and coating options. Fast delivery from stock for your projects.{% else %}ölçüleri, mukavemet kalitesi ve kaplama seçenekleri. Projenize özel stoktan hızlı teslimat.{% endif %}{% endblock %}
 
 {% block content %}
 <section class="product-detail-section">
     <div class="container">
         
         <div class="detail-breadcrumb">
-            <a href="/">Ana Sayfa</a>
+            <a href="/?lang={{ current_lang }}">{{ t.menu_home }}</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            <a href="/katalog">Endüstriyel Katalog</a>
+            <a href="/katalog?lang={{ current_lang }}">{{ t.menu_catalog }}</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            <span>{{ product.category_tr }}</span>
+            <span>{{ p_cat }}</span>
         </div>
 
         <div class="detail-grid-premium">
             
             <div class="detail-image-col">
                 <div class="detail-image-wrapper">
-                    <img src="{{ url_for('static', filename='images/products/' + product.image) }}" alt="{{ product.name_tr }}">
+                    <img src="{{ url_for('static', filename='images/products/' + product.image) }}" alt="{{ p_name }}">
                 </div>
             </div>
 
             <div class="detail-info-col">
                 <div class="detail-badges">
-                    <span class="d-category-badge">{{ product.category_tr }}</span>
+                    <span class="d-category-badge">{{ p_cat }}</span>
                     <span class="d-norm-badge">{{ product.norm }}</span>
                 </div>
                 
-                <h1 class="detail-product-title">{{ product.name_tr }}</h1>
+                <h1 class="detail-product-title">{{ p_name }}</h1>
                 
                 <p class="detail-short-desc">
+                    {% if current_lang == 'en' %}
+                    This product is supplied in full compliance with international <strong>{{ product.norm }}</strong> standards, featuring precise tolerance values to withstand high-stress conditions in construction sites and manufacturing lines.
+                    {% else %}
                     İlgili ürün uluslararası <strong>{{ product.norm }}</strong> standartlarına tam uyumlu olarak, şantiye ve imalat hatlarındaki yüksek stres koşullarına dayanacak hassas tolerans değerleriyle sunulmaktadır.
+                    {% endif %}
                 </p>
 
                 <div class="tech-specs-container">
-                    <h3>Teknik ve Metalurjik Özellikler</h3>
+                    <h3>{% if current_lang == 'en' %}Technical and Metallurgical Specifications{% else %}Teknik ve Metalurjik Özellikler{% endif %}</h3>
                     <table class="detail-tech-table">
                         <tbody>
                             <tr>
-                                <td>Üretim Standardı (Norm)</td>
+                                <td>{% if current_lang == 'en' %}Production Standard (Norm){% else %}Üretim Standardı (Norm){% endif %}</td>
                                 <td><strong>{{ product.norm }}</strong></td>
                             </tr>
                             <tr>
-                                <td>Çap ve Boyut Aralığı</td>
+                                <td>{% if current_lang == 'en' %}Diameter & Size Range{% else %}Çap ve Boyut Aralığı{% endif %}</td>
                                 <td><strong>{{ product.sizes }}</strong></td>
                             </tr>
                             <tr>
-                                <td>Kafa Formu / Sürücü Tipi</td>
-                                <td><strong>{{ product.head_tr }}</strong></td>
+                                <td>{% if current_lang == 'en' %}Head Form / Drive Type{% else %}Kafa Formu / Sürücü Tipi{% endif %}</td>
+                                <td><strong>{{ p_head }}</strong></td>
                             </tr>
                             <tr>
-                                <td>Korozyon Direnci (Kaplama)</td>
-                                <td><strong>{{ product.coating_tr }}</strong></td>
+                                <td>{% if current_lang == 'en' %}Corrosion Resistance (Coating){% else %}Korozyon Direnci (Kaplama){% endif %}</td>
+                                <td><strong>{{ p_coating }}</strong></td>
                             </tr>
                             {% if product.strength %}
                             <tr>
-                                <td>Çekirdek Mukavemet Sınıfı</td>
-                                <td><span class="strength-highlight-detail">{{ product.strength }} Kalite</span></td>
+                                <td>{% if current_lang == 'en' %}Core Strength Grade{% else %}Çekirdek Mukavemet Sınıfı{% endif %}</td>
+                                <td><span class="strength-highlight-detail">{{ product.strength }} {% if current_lang == 'en' %}Grade{% else %}Kalite{% endif %}</span></td>
                             </tr>
                             {% endif %}
                             <tr>
-                                <td>Tedarik & Stok Durumu</td>
-                                <td><span class="stock-status">Merkez Depo Teslim</span></td>
+                                <td>{% if current_lang == 'en' %}Supply & Stock Status{% else %}Tedarik & Stok Durumu{% endif %}</td>
+                                <td><span class="stock-status">{% if current_lang == 'en' %}Central Warehouse Delivery{% else %}Merkez Depo Teslim{% endif %}</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="detail-action-area">
-                    <a href="/iletisim?urun={{ product.id }}" class="btn-primary-large">
-                        <span>PROJE FİYATI VE TEKLİF İSTE</span>
+                    <a href="/iletisim?urun={{ product.id }}&lang={{ current_lang }}" class="btn-primary-large">
+                        <span>{% if current_lang == 'en' %}REQUEST PROJECT PRICE & QUOTE{% else %}PROJE FİYATI VE TEKLİF İSTE{% endif %}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line points="5 12 19 12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                     
-                    <button class="btn-secondary-large" onclick="alert('İlgili ürüne ait TDS (Teknik Veri Belgesi) ve Sertifika talepleriniz için lütfen İletişim sayfasından proje detaylarınızı mühendislik ekibimize iletiniz.')">
+                    {% set alert_msg = "For TDS (Technical Data Sheet) and Certificate requests regarding this product, please forward your project details to our engineering team via the Contact page." if current_lang == 'en' else "İlgili ürüne ait TDS (Teknik Veri Belgesi) ve Sertifika talepleriniz için lütfen İletişim sayfasından proje detaylarınızı mühendislik ekibimize iletiniz." %}
+                    <button class="btn-secondary-large" onclick="alert('{{ alert_msg }}')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line points="16 13 8 13"></line><line points="16 17 8 17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        <span>TDS VE SERTİFİKA TALEP ET</span>
+                        <span>{% if current_lang == 'en' %}REQUEST TDS & CERTIFICATE{% else %}TDS VE SERTİFİKA TALEP ET{% endif %}</span>
                     </button>
                 </div>
 
