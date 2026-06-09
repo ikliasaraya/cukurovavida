@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="catalog-hero-premium">
+    <div class="container">
+        <span class="catalog-tagline">{{ t.catalog_tagline }}</span>
+        <h1>{{ t.catalog_title }}</h1>
+        <p>{{ t.catalog_desc }}</p>
+    </div>
+</section>
+
+<section class="catalog-main-section">
+    <div class="container">
+        
+        <div class="catalog-filter-wrapper">
+            <span class="filter-title-text">{{ t.filter_title }}</span>
+            <div class="catalog-filter-bar" id="filterBar">
+                <button class="filter-btn active" data-target="all">{{ t.cat_all }}</button>
+                <button class="filter-btn" data-target="Akıllı Vidalar">{{ t.cat_drilling }}</button>
+                <button class="filter-btn" data-target="Cıvata Grubu">{{ t.cat_bolts }}</button>
+                <button class="filter-btn" data-target="Ahşap Grubu">{{ t.cat_wood }}</button>
+                <button class="filter-btn" data-target="Makine Elemanları">{{ t.cat_machine }}</button>
+                <button class="filter-btn" data-target="Sac Vidaları">{{ t.cat_sheet }}</button>
+                <button class="filter-btn" data-target="İnşaat ve Alçıpan">{{ t.cat_drywall }}</button>
+                <button class="filter-btn" data-target="Dış Cephe ve Çatı">{{ t.cat_roofing }}</button>
+                <button class="filter-btn" data-target="İnşaat ve Dübel">{{ t.cat_anchors }}</button>
+            </div>
+        </div>
+
+        <div class="catalog-counter">
+            <p>{{ t.total_listed_pre }} <strong id="visibleCount">12</strong> {{ t.total_listed_post }}</p>
+        </div>
+
+        <div class="catalog-grid-premium" id="catalogGrid">
+            {% for product in products %}
+            <div class="catalog-card" data-category="{{ product.category_tr }}">
+                
+                <div class="card-badge-area">
+                    <span class="category-badge">
+                        {{ product.category_en if current_lang == 'en' else product.category_tr }}
+                    </span>
+                    {% if product.strength %}
+                    <span class="strength-badge">{{ product.strength }} {{ t.spec_strength.replace(':', '') }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="card-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/products/' + product.image) }}" alt="{{ product.name_tr }}" loading="lazy">
+                </div>
+
+                <div class="card-info-content">
+                    <span class="product-norm-label">{{ product.norm }}</span>
+                    <h3 class="product-title-text">
+                        {{ product.name_en if current_lang == 'en' else product.name_tr }}
+                    </h3>
+                    
+                    <div class="product-spec-matrix">
+                        <div class="spec-row">
+                            <span class="spec-label">{{ t.spec_size }}</span>
+                            <span class="spec-value">{{ product.sizes }}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">{{ t.spec_head }}</span>
+                            <span class="spec-value">{{ product.head_en if current_lang == 'en' else product.head_tr }}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">{{ t.spec_coating }}</span>
+                            <span class="spec-value">{{ product.coating_en if current_lang == 'en' else product.coating_tr }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-action-footer">
+                    <a href="/katalog/urun/{{ product.id }}&lang={{ current_lang }}" class="btn-secondary-card">{{ t.btn_tech_detail }}</a>
+                    <a href="/iletisim?urun={{ product.id }}&lang={{ current_lang }}" class="btn-primary-card">{{ t.btn_request_quote }}</a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="catalog-empty-state" id="emptyState" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <h3>{{ t.empty_title }}</h3>
+            <p>{{ t.empty_desc }}</p>
+            <a href="/iletisim?lang={{ current_lang }}" class="btn-secondary-card" style="display: inline-block; margin-top: 16px;">{{ t.btn_custom_order }}</a>
+        </div>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const catalogCards = document.querySelectorAll(".catalog-card");
+    const emptyState = document.getElementById("emptyState");
+    const visibleCount = document.getElementById("visibleCount");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+
+            const targetCategory = this.getAttribute("data-target");
+            let count = 0;
+
+            catalogCards.forEach(card => {
+                const cardCategory = card.getAttribute("data-category");
+
+                if (targetCategory === "all" || cardCategory === targetCategory) {
+                    card.style.display = "block";
+                    card.style.opacity = "0";
+                    setTimeout(() => { card.style.opacity = "1"; }, 30);
+                    count++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            visibleCount.textContent = count;
+
+            if (count === 0) {
+                emptyState.style.display = "block";
+            } else {
+                emptyState.style.display = "none";
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}

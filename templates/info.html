@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="corporate-hero-dark video-hero">
+    <video class="hero-video-bg" autoplay loop muted playsinline>
+        <source src="{{ url_for('static', filename='videos/kurumsal-banner.mp4') }}" type="video/mp4">
+    </video>
+    
+    <div class="video-overlay"></div>
+
+    <div class="container hero-asymmetric-grid relative-z">
+        <div class="hero-left-col animate-fade-up">
+            <img src="{{ url_for('static', filename='images/logo/logo-info.svg') }}" alt="Çukurova Vida" class="hero-integrated-logo">
+            <span class="hero-tagline">{{ t.about_us }}</span>
+            <h1 class="hero-title-main">{{ t.corp_title | safe }}</h1>
+        </div>
+        
+        <div class="hero-right-col animate-fade-left delay-1">
+            <p class="hero-intro-text">{{ t.corp_desc }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="corporate-vision-premium">
+    <div class="container">
+        <div class="vision-grid animate-fade-up delay-2">
+            
+            <div class="vision-title-col">
+                <div class="vision-accent-line"></div>
+                <h2>{{ t.corp_vision_title | safe }}</h2>
+                <span class="vision-year">{{ t.corp_vision_subtitle }}</span>
+            </div>
+
+            <div class="vision-text-col">
+                <p class="vision-lead">
+                    <a target="_blank" href="http://www.cukurovahavalandirma.com" rel="noopener noreferrer"><strong>Çukurova Havalandırma</strong></a> {{ t.corp_vision_lead }}
+                </p>
+                <p class="vision-body">
+                    {{ t.corp_vision_body | safe }}
+                </p>
+                
+                <div class="vision-highlight-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <p>{{ t.corp_vision_box | safe }}</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="core-values-premium">
+    <div class="container">
+        
+        <div class="values-header-area animate-fade-up">
+            <span class="values-subtitle">{{ t.strategic_advantages }}</span>
+            <h2 class="values-title">{{ t.why_us }}</h2>
+        </div>
+        
+        <div class="values-matrix-rows">
+            
+            <div class="matrix-row-item animate-fade-up delay-1">
+                <div class="matrix-num">01</div>
+                <div class="matrix-content-split">
+                    <div class="matrix-title-block">
+                        <h3>{{ t.adv1_title }}</h3>
+                        <span class="matrix-tag">{{ t.adv1_tag }}</span>
+                    </div>
+                    <div class="matrix-text-block">
+                        <p>{{ t.adv1_desc }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="matrix-row-item animate-fade-up delay-2">
+                <div class="matrix-num">02</div>
+                <div class="matrix-content-split">
+                    <div class="matrix-title-block">
+                        <h3>{{ t.adv2_title }}</h3>
+                        <span class="matrix-tag">{{ t.adv2_tag }}</span>
+                    </div>
+                    <div class="matrix-text-block">
+                        <p>{{ t.adv2_desc }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="matrix-row-item animate-fade-up delay-3">
+                <div class="matrix-num">03</div>
+                <div class="matrix-content-split">
+                    <div class="matrix-title-block">
+                        <h3>{{ t.adv3_title }}</h3>
+                        <span class="matrix-tag">{{ t.adv3_tag }}</span>
+                    </div>
+                    <div class="matrix-text-block">
+                        <p>{{ t.adv3_desc }}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

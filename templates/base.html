@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="robots" content="index, follow">
+    
+    <title>{% block title %}Çukurova Vida | Endüstriyel Bağlantı Elemanları{% endblock %}</title>
+    
+    <meta name="description" content="{% block meta_description %}İmalat sanayisinin ve işletmelerin ihtiyaç duyduğu standart ve özel bağlantı elemanlarında güvenilir, hızlı ve şeffaf çözüm ortağınız. DIN/ISO normlarında stoktan teslimat.{% endblock %}">
+    
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <link rel="alternate" hreflang="tr" href="{{ request.base_url }}" />
+    <link rel="alternate" hreflang="en" href="{{ request.base_url }}?lang=en" />
+    <link rel="alternate" hreflang="uk" href="{{ request.base_url }}?lang=uk" />
+    <link rel="alternate" hreflang="x-default" href="{{ request.base_url }}" />
+
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/favicon.png') }}?v=1.0">
+    <meta property="og:site_name" content="Çukurova Vida">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}Çukurova Vida | Endüstride Güven{% endblock %}">
+    <meta property="og:description" content="{% block og_desc %}Projeleriniz için yüksek mukavemetli standart ve özel bağlantı elemanları.{% endblock %}">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{{ url_for('static', filename='images/logo/logo-med.svg', _external=True) }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="main-header">
+        <div class="container header-wrapper">
+            <a href="/?lang={{ current_lang }}" class="logo-area">
+                <img src="{{ url_for('static', filename='images/logo/logo-med.svg') }}" alt="Çukurova Vida Logo" class="site-logo">
+                <span class="logo-motto">{{ t.footer_motto }}</span>
+            </a>
+            <nav class="main-nav">
+                <a href="/?lang={{ current_lang }}" class="nav-link {% if request.path == '/' %}active{% endif %}">{{ t.menu_home }}</a>
+                <a href="/kurumsal?lang={{ current_lang }}" class="nav-link {% if request.path == '/kurumsal' %}active{% endif %}">{{ t.menu_corporate }}</a>
+                <a href="/katalog?lang={{ current_lang }}" class="nav-link {% if request.path == '/katalog' %}active{% endif %}">{{ t.menu_catalog }}</a>
+                <a href="/iletisim?lang={{ current_lang }}" class="nav-link {% if request.path == '/iletisim' %}active{% endif %}">{{ t.menu_contact }}</a>
+                
+                <div class="lang-selector">
+                    <button class="current-lang">
+                        <img src="https://flagcdn.com/w20/{{ 'gb' if current_lang == 'en' else 'tr' }}.png" alt="Dil"> 
+                        <span>{{ current_lang | upper }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="{{ request.path }}?lang=tr"><img src="https://flagcdn.com/w20/tr.png" alt="Türkçe"> <span>TR</span></a>
+                        <a href="{{ request.path }}?lang=en"><img src="https://flagcdn.com/w20/gb.png" alt="English"> <span>EN</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-wrapper">
+            
+            <div class="footer-col brand-col">
+                <div class="footer-brand-group">
+                    <img src="{{ url_for('static', filename='images/logo/logo-info.svg') }}" alt="Çukurova Vida" class="footer-logo">
+                    <span class="footer-motto">{{ t.footer_motto }}</span>
+                </div>
+                <p class="footer-desc">{{ t.footer_desc }}</p>
+            </div>
+            
+            <div class="footer-col links-col">
+                <h3>{{ t.quick_menu }}</h3>
+                <ul>
+                    <li><a href="/?lang={{ current_lang }}">{{ t.menu_home }}</a></li>
+                    <li><a href="/kurumsal?lang={{ current_lang }}">{{ t.about_us }}</a></li>
+                    <li><a href="/katalog?lang={{ current_lang }}">{{ t.supply_catalog }}</a></li>
+                    <li><a href="/?lang={{ current_lang }}#technical-table">{{ t.tech_table }}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h3>{{ t.contact_us }}</h3>
+                <ul class="contact-info">
+                    <li>
+                        <span class="contact-label">{{ t.address_label }}</span>
+                        <span class="contact-text">Kayalıbağ Mahallesi Turhan Cemal Beriker Bulvarı <br>
+    Şahin Tanrıkulu İş Merkezi <br> No: 5 / 804 <br>
+    Seyhan / Adana</span>
+                    </li>
+                    <li>
+                        <span class="contact-label">{{ t.email_label }}</span>
+                        <a href="mailto:info@cukurovavida.com" class="contact-text">info@cukurovavida.com</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">{{ t.whatsapp_label }}</span>
+                        <a href="https://wa.me/905530139911" target="_blank" class="whatsapp-link">
+                            +90 (553) 013 99 11
+                        </a>
+                    </li>
+                    <li class="social-footer">
+                        <span class="contact-label">{{ t.follow_us_label }}</span>
+                        <div class="social-links">
+                            <a href="https://t.me/cukurovavida" target="_blank">Telegram</a>
+                            <a href="https://instagram.com/cukurovavida" target="_blank">Instagram</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container footer-map-container">
+            <div class="footer-map-wrapper">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3184.282510250682!2d35.3214052!3d36.9839446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15288f6abf7d53d3%3A0xfb50e8a085636a54!2x%C5%9Eahin-tanr%C4%B1kulu%20%C4%B0%C5%9F%20Mer.!5e0!3m2!1sen!2str!4v1700000000000!5m2!1sen!2str" 
+                    width="100%" 
+                    height="320" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>{{ t.copyright }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top" title="Yukarı Çık">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Kullanıcı 400 piksel aşağı kaydırınca butonu pürüzsüzce göster
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Tıklandığında pürüzsüzce yukarı uçur
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        // Trackpad (Macbook vb.) kullananlarda zaten doğal yumuşaklık olduğu için 
+        // bu efekti sadece standart fare tekerleği (Windows/Mouse) kullananlara uyguluyoruz.
+        if (window.matchMedia('(pointer: fine)').matches && !navigator.userAgent.includes('Macintosh')) {
+            let targetY = window.scrollY;
+            let currentY = window.scrollY;
+            const ease = 0.07; // Yumuşaklık katsayısı (0.05 ile 0.1 arası idealdir. Küçüldükçe daha da yağ gibi kayar)
+
+            window.addEventListener('wheel', (e) => {
+                // Tarayıcının o sert, ani sıçramasını engelliyoruz
+                e.preventDefault();
+                
+                // Fare tekerleğinin dönüş hızına göre hedef noktayı hesapla
+                targetY += e.deltaY * 0.8; 
+                
+                // Sayfa sınırlarının dışına taşmayı engelle
+                targetY = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
+            }, { passive: false });
+
+            // Ekran yenileme hızına (Hz) senkronize animasyon döngüsü (requestAnimationFrame)
+            function smoothScrollLoop() {
+                // Mevcut konumdan hedef konuma yumuşak bir yay çizerek yaklaş (Linear Interpolation)
+                currentY += (targetY - currentY) * ease;
+                
+                window.scrollTo(0, currentY);
+                
+                // Eğer hala hedefe varmadıysak dönmeye devam et, vardığımızda işlemciyi yorma
+                requestAnimationFrame(smoothScrollLoop);
+            }
+            
+            // Sayfa kaydırıldıkça döngüyü canlı tut
+            requestAnimationFrame(smoothScrollLoop);
+            
+            // Kullanıcı scrollbar'ı elle tutup çekerse senkronizasyon bozulmasın diye güncelleme
+            window.addEventListener('scroll', () => {
+                if (Math.abs(currentY - window.scrollY) > 10) {
+                    targetY = window.scrollY;
+                    currentY = window.scrollY;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

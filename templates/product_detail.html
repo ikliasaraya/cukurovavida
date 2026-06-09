@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name_tr }} Teknik Özellikleri | Çukurova Vida{% endblock %}
+{% block meta_description %}{{ product.name_tr }} ({{ product.norm }}) ölçüleri, mukavemet kalitesi ve kaplama seçenekleri. Projenize özel stoktan hızlı teslimat.{% endblock %}
+
+{% block content %}
+<section class="product-detail-section">
+    <div class="container">
+        
+        <div class="detail-breadcrumb">
+            <a href="/">Ana Sayfa</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <a href="/katalog">Endüstriyel Katalog</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            <span>{{ product.category_tr }}</span>
+        </div>
+
+        <div class="detail-grid-premium">
+            
+            <div class="detail-image-col">
+                <div class="detail-image-wrapper">
+                    <img src="{{ url_for('static', filename='images/products/' + product.image) }}" alt="{{ product.name_tr }}">
+                </div>
+            </div>
+
+            <div class="detail-info-col">
+                <div class="detail-badges">
+                    <span class="d-category-badge">{{ product.category_tr }}</span>
+                    <span class="d-norm-badge">{{ product.norm }}</span>
+                </div>
+                
+                <h1 class="detail-product-title">{{ product.name_tr }}</h1>
+                
+                <p class="detail-short-desc">
+                    İlgili ürün uluslararası <strong>{{ product.norm }}</strong> standartlarına tam uyumlu olarak, şantiye ve imalat hatlarındaki yüksek stres koşullarına dayanacak hassas tolerans değerleriyle sunulmaktadır.
+                </p>
+
+                <div class="tech-specs-container">
+                    <h3>Teknik ve Metalurjik Özellikler</h3>
+                    <table class="detail-tech-table">
+                        <tbody>
+                            <tr>
+                                <td>Üretim Standardı (Norm)</td>
+                                <td><strong>{{ product.norm }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Çap ve Boyut Aralığı</td>
+                                <td><strong>{{ product.sizes }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Kafa Formu / Sürücü Tipi</td>
+                                <td><strong>{{ product.head_tr }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Korozyon Direnci (Kaplama)</td>
+                                <td><strong>{{ product.coating_tr }}</strong></td>
+                            </tr>
+                            {% if product.strength %}
+                            <tr>
+                                <td>Çekirdek Mukavemet Sınıfı</td>
+                                <td><span class="strength-highlight-detail">{{ product.strength }} Kalite</span></td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Tedarik & Stok Durumu</td>
+                                <td><span class="stock-status">Merkez Depo Teslim</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="detail-action-area">
+                    <a href="/iletisim?urun={{ product.id }}" class="btn-primary-large">
+                        <span>PROJE FİYATI VE TEKLİF İSTE</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line points="5 12 19 12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    
+                    <button class="btn-secondary-large" onclick="alert('İlgili ürüne ait TDS (Teknik Veri Belgesi) ve Sertifika talepleriniz için lütfen İletişim sayfasından proje detaylarınızı mühendislik ekibimize iletiniz.')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line points="16 13 8 13"></line><line points="16 17 8 17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span>TDS VE SERTİFİKA TALEP ET</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

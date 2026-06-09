@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero-section">
+    <div class="hero-graphic-fullscreen">
+        <img src="/static/images/hero-img.jpg" alt="Yüksek Mukavemetli Çelik Cıvata" class="hero-cover-img">
+        <div class="overlay-gradient"></div>
+        
+        <div class="modernist-badge">
+            <div class="premium-status-pill">
+            <span class="pulse-dot"></span>
+            <span class="status-text">{{ t.hero_badge }}</span>
+        </div>
+        </div>
+    </div>
+
+    <div class="container hero-wrapper">
+        <div class="hero-content">
+            <div class="tagline">{{ t.hero_tagline }}</div>
+            <h1>{{ t.hero_title | safe }}</h1>
+            <p>{{ t.hero_desc }}</p>
+            
+            <div class="hero-cta-area">
+                <a href="#urunler" class="btn-primary">{{ t.hero_cta }}</a>
+                <span class="cta-subtext">{{ t.hero_subtext }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="badges-section">
+    <div class="container badges-grid">
+        <div class="badge-card-photo">
+            <div class="badge-image-wrapper">
+                <img src="/static/images/badge-img.jpg" alt="DIN ISO Standartları" class="feature-photo">
+            </div>
+            <div class="badge-content">
+                <h3>{{ t.badge_din_title }}</h3>
+                <p>{{ t.badge_din_desc }}</p>
+            </div>
+        </div>
+
+        <div class="badge-card-photo">
+            <div class="badge-image-wrapper">
+                <img src="/static/images/badge-img3.jpg" alt="Doğrudan Tedarik" class="feature-photo">
+            </div>
+            <div class="badge-content">
+                <h3>{{ t.badge_direct_title }}</h3>
+                <p>{{ t.badge_direct_desc }}</p>
+            </div>
+        </div>
+
+        <div class="badge-card-photo">
+            <div class="badge-image-wrapper">
+                <img src="/static/images/badge-img2.jpg" alt="Esnek Stok" class="feature-photo">
+            </div>
+            <div class="badge-content">
+                <h3>{{ t.badge_stock_title }}</h3>
+                <p>{{ t.badge_stock_desc }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="urunler" class="products-section">
+    <div class="container">
+        <div class="section-title-area">
+            <h2>{{ t.section_products_title }}</h2>
+            <p>{{ t.section_products_desc }}</p>
+        </div>
+
+        <div class="slider-wrapper">
+            <button class="slider-btn prev-btn" aria-label="Önceki">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+
+            <div class="products-slider-container" id="productSlider">
+                {% for product in products %}
+                <div class="product-card slider-card">
+                    <div class="product-image-wrapper">
+                        <img src="/static/images/products/{{ product.image }}" alt="{{ product.name_tr }}" class="product-photo">
+                        <div class="product-img-overlay"></div>
+                    </div>
+                    
+                    <div class="product-category">
+                        {{ product.category_en if current_lang == 'en' else product.category_tr }}
+                    </div>
+                    <h3 class="product-name">
+                        {{ product.name_en if current_lang == 'en' else product.name_tr }}
+                    </h3>
+                    
+                    <div class="product-specs">
+                        <div class="spec-line"><span class="label">{{ t.spec_norm }}</span><span class="value">{{ product.norm }}</span></div>
+                        <div class="spec-line"><span class="label">{{ t.spec_size }}</span><span class="value">{{ product.sizes }}</span></div>
+                        <div class="spec-line"><span class="label">{{ t.spec_head }}</span><span class="value">{{ product.head_en if current_lang == 'en' else product.head_tr }}</span></div>
+                        <div class="spec-line"><span class="label">{{ t.spec_coating }}</span><span class="value">{{ product.coating_en if current_lang == 'en' else product.coating_tr }}</span></div>
+                        {% if product.strength %}
+                        <div class="spec-line strength-highlight"><span class="label">{{ t.spec_strength }}</span><span class="value">{{ product.strength }}</span></div>
+                        {% endif %}
+                    </div>
+                    
+                    <a href="/iletisim?urun={{ product.id }}&lang={{ current_lang }}" class="btn-secondary">{{ t.btn_quick_quote }}</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button class="slider-btn next-btn" aria-label="Sonraki">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section id="technical-table" class="technical-table-section">
+    <div class="container">
+        <div class="section-title-area">
+            <h2>{{ t.tech_guide_title }}</h2>
+            <p>{{ t.tech_guide_desc }}</p>
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>{{ t.th_quality }}</th>
+                        <th>{{ t.th_tensile }}</th>
+                        <th>{{ t.th_yield }}</th>
+                        <th>{{ t.th_surface }}</th>
+                        <th>{{ t.th_usage }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>6.8 {% if current_lang == 'en' %}(Low Carbon Steel){% else %}(Düşük Karbonlu Çelik){% endif %}</strong></td>
+                        <td>600 N/mm² (MPa)</td>
+                        <td>480 N/mm² (MPa)</td>
+                        <td>{% if current_lang == 'en' %}White Zinc / Black Phase{% else %}Beyaz Çinko / Siyah Faz{% endif %}</td>
+                        <td>{% if current_lang == 'en' %}Light steel structures, furniture manufacturing, and low-stress general assembly lines.{% else %}Hafif çelik konstrüksiyonlar, mobilya imalatı ve düşük gerilimli genel montaj hatları.{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8.8 {% if current_lang == 'en' %}(Quenched & Tempered Steel){% else %}(Islah Edilmiş Çelik){% endif %}</strong></td>
+                        <td>800 N/mm² (MPa)</td>
+                        <td>640 N/mm² (MPa)</td>
+                        <td>Beyaz Çinko / Sarı Çinko / Geomet</td>
+                        <td><strong>{% if current_lang == 'en' %}Industry Standard:{% else %}Endüstri Standardı:{% endif %}</strong> {% if current_lang == 'en' %}Machine manufacturing, automotive supply industry, structural steel projects, and heavy racking systems.{% else %}Makine imalatı, otomotiv yan sanayi, yapısal çelik projeleri ve ağır raflama sistemleri.{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10.9 {% if current_lang == 'en' %}(High Alloy Steel){% else %}(Yüksek Alaşımlı Çelik){% endif %}</strong></td>
+                        <td>1000 N/mm² (MPa)</td>
+                        <td>900 N/mm² (MPa)</td>
+                        <td>Fosfat / Dacromet / Çinko Nikel</td>
+                        <td>{% if current_lang == 'en' %}Heavy machinery, high-vibration press lines, chassis connections, and wind turbine tower assemblies.{% else %}Ağır iş makineleri, yüksek titreşimli pres hatları, şasi bağlantıları ve rüzgar türbini kule montajları.{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12.9 {% if current_lang == 'en' %}(Maximum Strength){% else %}(Maksimum Mukavemet){% endif %}</strong></td>
+                        <td>1200 N/mm² (MPa)</td>
+                        <td>1080 N/mm² (MPa)</td>
+                        <td>{% if current_lang == 'en' %}Black (Phosphated) / Oxide{% else %}Siyah (Fosfatlı) / Oksitli{% endif %}</td>
+                        <td>{% if current_lang == 'en' %}Critical engine components, plastic injection molds, hydraulic/pneumatic systems. (Special design against impact loads).{% else %}Kritik motor bileşenleri, plastic enjeksiyon kalıpları, hidrolik/pnömatik sistemler. (Darbe yüküne karşı özel tasarım).{% endif %}</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><strong>A2-70 / A4-80 (Paslanmaz - Inox)</strong></td>
+                        <td>700 - 800 N/mm² (MPa)</td>
+                        <td>450 - 600 N/mm² (MPa)</td>
+                        <td>{% if current_lang == 'en' %}Uncoated (Passivated){% else %}Kaplamasız (Pasivasyonlu){% endif %}</td>
+                        <td>{% if current_lang == 'en' %}Food machinery, chemical plants, water treatment systems, and marine sector. High corrosion resistance.{% else %}Gıda makineleri, kimya tesisleri, arıtma sistemleri ve denizcilik (marin) sektörü. Yüksek korozyon direnci.{% endif %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const slider = document.getElementById('productSlider');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        if(slider && prevBtn && nextBtn) {
+            const scrollAmount = () => {
+                const card = slider.querySelector('.product-card');
+                return card ? card.offsetWidth + 20 : 300; 
+            };
+            nextBtn.addEventListener('click', () => { slider.scrollBy({ left: scrollAmount(), behavior: 'smooth' }); });
+            prevBtn.addEventListener('click', () => { slider.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }); });
+        }
+    });
+</script>
+{% endblock %}
