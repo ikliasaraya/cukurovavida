@@ -167,46 +167,51 @@
     </script>
 
     <script>
-        // Trackpad (Macbook vb.) kullananlarda zaten doğal yumuşaklık olduğu için 
-        // bu efekti sadece standart fare tekerleği (Windows/Mouse) kullananlara uyguluyoruz.
-        if (window.matchMedia('(pointer: fine)').matches && !navigator.userAgent.includes('Macintosh')) {
-            let targetY = window.scrollY;
-            let currentY = window.scrollY;
-            const ease = 0.07; // Yumuşaklık katsayısı (0.05 ile 0.1 arası idealdir. Küçüldükçe daha da yağ gibi kayar)
+    // Tarayıcı ve cihaz kontrolü
+    const isMac = navigator.userAgent.includes('Macintosh');
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
 
-            window.addEventListener('wheel', (e) => {
-                // Tarayıcının o sert, ani sıçramasını engelliyoruz
-                e.preventDefault();
-                
-                // Fare tekerleğinin dönüş hızına göre hedef noktayı hesapla
-                targetY += e.deltaY * 0.8; 
-                
-                // Sayfa sınırlarının dışına taşmayı engelle
-                targetY = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
-            }, { passive: false });
+    if (isFinePointer && !isMac) {
+        let targetY = window.pageYOffset || document.documentElement.scrollTop;
+        let currentY = targetY;
+        const ease = 0.07; 
 
-            // Ekran yenileme hızına (Hz) senkronize animasyon döngüsü (requestAnimationFrame)
-            function smoothScrollLoop() {
-                // Mevcut konumdan hedef konuma yumuşak bir yay çizerek yaklaş (Linear Interpolation)
+        window.addEventListener('wheel', (e) => {
+            // Firefox'ta bazen preventDefault engellenebilir, yine de temel mantık aynı
+            e.preventDefault();
+            
+            // DeltaY değerini tarayıcı bazlı normalize et
+            const delta = e.deltaY;
+            targetY += delta * 0.8; 
+            
+            // Sınırları hesapla (Firefox için document.body.scrollHeight güvenli bir fallback'tir)
+            const maxScroll = Math.max(
+                document.body.scrollHeight, 
+                document.documentElement.scrollHeight
+            ) - window.innerHeight;
+            
+            targetY = Math.max(0, Math.min(targetY, maxScroll));
+        }, { passive: false });
+
+        function smoothScrollLoop() {
+            // Fark çok küçükse durdur (işlemciyi rahatlatmak için)
+            if (Math.abs(targetY - currentY) > 0.5) {
                 currentY += (targetY - currentY) * ease;
-                
                 window.scrollTo(0, currentY);
-                
-                // Eğer hala hedefe varmadıysak dönmeye devam et, vardığımızda işlemciyi yorma
-                requestAnimationFrame(smoothScrollLoop);
             }
-            
-            // Sayfa kaydırıldıkça döngüyü canlı tut
             requestAnimationFrame(smoothScrollLoop);
-            
-            // Kullanıcı scrollbar'ı elle tutup çekerse senkronizasyon bozulmasın diye güncelleme
-            window.addEventListener('scroll', () => {
-                if (Math.abs(currentY - window.scrollY) > 10) {
-                    targetY = window.scrollY;
-                    currentY = window.scrollY;
-                }
-            });
         }
-    </script>
+        
+        requestAnimationFrame(smoothScrollLoop);
+        
+        // Kullanıcı scrollbar'ı elle çekerse senkronizasyonun kopmasını engelle
+        window.addEventListener('scroll', () => {
+            if (Math.abs(window.scrollY - currentY) > 50) {
+                targetY = window.scrollY;
+                currentY = window.scrollY;
+            }
+        });
+    }
+</script>
 </body>
 </html>

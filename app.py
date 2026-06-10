@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import re
 import json
 import os
@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 load_dotenv() 
 
 app = Flask(__name__)
+
 
 # --- VERİ ÇEKME MOTORU ---
 def get_products():
@@ -162,6 +163,17 @@ def kvkk():
 @app.route('/gizlilik')
 def gizlilik():
     return render_template('gizlilik.html')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    # Sitenin tüm sayfalarını buraya yaz
+    pages = ['/', '/hakkimizda', '/urunler', '/iletisim']
+    
+    # XML formatında yanıt oluştur
+    sitemap_xml = render_template('sitemap.xml', pages=pages)
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+    return response
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=5000)
