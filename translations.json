@@ -15,8 +15,7 @@
         "email_label": "E-Posta:",
         "whatsapp_label": "WhatsApp (Teklif):",
         "follow_us_label": "Bizi Takip Edin:",
-        "copyright": "© 2026 Çukurova Vida. Tüm hakları saklıdır.",
-        
+"copyright": "© 2026 Çukurova Vida. Tüm hakları saklıdır. | SER Harita Müh. Gayrimenkul Değerleme Danışmanlık İnş. Mak. İth. İhr. San. ve Tic. Ltd. Şti.",        
         "hero_tagline": "ENDÜSTRİYEL VİDA VE CIVATA TEDARİĞİ",
         "hero_title": "Projeleriniz İçin<br>Doğru Ürün, Esnek Tedarik",
         "hero_desc": "Çukurova Vida olarak, imalat sanayisinin ve işletmelerin ihtiyaç duyduğu standart ve özel bağlantı elemanlarını güvenilir üretici ağımızdan tedarik ediyoruz. Büyük tonajlı siparişlerinizde fabrikadan doğrudan adresinize teslimat çözümleri sunarken, acil ihtiyaçlarınız için de esnek stok yönetimimizle zaman kaybetmeden, doğrudan ve şeffaf bir süreç yürütüyoruz.",
@@ -80,7 +79,7 @@
         "why_us": "Neden Bizimle Çalışmalısınız?",
         "adv1_title": "Mühendislik Yaklaşımı",
         "adv1_tag": "Statik ve Norm Analizi",
-        "adv1_desc": "Malzemeyi sadece listelemeyiz. Projenizin statik gereksinimlerini analiz eder; en uygun norm, mukavemet ve kaplama özelliklerine sahip ürünleri sahaya hatasza yakın bir disiplinle belirleriz.",
+        "adv1_desc": "Malzemeyi sadece listelemeyiz. Projenizin statik gereksinimlerini analiz eder; en uygun norm, mukavemet ve kaplama özelliklerine sahip ürünleri sahaya hatasıza yakın bir disiplinle belirleriz.",
         "adv2_title": "Çevik ve Bağımsız Operasyon",
         "adv2_tag": "Anında İnisiyatif & Hız",
         "adv2_desc": "Hantal süreçlerden arındırılmış bağımsız yapımız sayesinde hızlı inisiyatif alabilir, acil şantiye ihtiyaçlarınıza veya özel imalat taleplerinize anında ve esneklikle adapte oluruz.",
@@ -114,7 +113,10 @@
         "placeholder_notes": "Varsa özel kaplama (Galvaniz) veya mukavemet sınıfı (10.9) taleplerinizi yazabilirsiniz...",
         "btn_submit_form": "MUKAVEMET VE FİYAT TEKLİFİ İSTE",
         "map_main_title": "Operasyon Noktamız",
-        "map_main_desc": "Adana Seyhan merkez ofisimizden tüm Türkiye'deki şantiyelere doğrudan ve hızlı sevkiyat yönetiyoruz."
+        "map_main_desc": "Adana Seyhan merkez ofisimizden tüm Türkiye'deki şantiyelere doğrudan ve hızlı sevkiyat yönetiyoruz.",
+        "footer_kvkk": "KVKK",
+        "footer_privacy": "Gizlilik Politikası",
+        "form_kvkk_check": "KVKK Aydınlatma Metni'ni okudum, anladım ve kabul ediyorum."
     },
     "en": {
         "menu_home": "Home",
@@ -132,8 +134,7 @@
         "email_label": "Email:",
         "whatsapp_label": "WhatsApp (Quote):",
         "follow_us_label": "Follow Us:",
-        "copyright": "© 2026 Cukurova Vida. All rights reserved.",
-        
+"copyright": "© 2026 Cukurova Vida. All rights reserved. | SER Harita Muh. Gayrimenkul Degerleme Danismanlik Ins. Mak. Ith. Ihr. San. ve Tic. Ltd. Sti.",        
         "hero_tagline": "INDUSTRIAL SCREW & BOLT SUPPLY",
         "hero_title": "Right Product, Flexible Supply<br>For Your Projects",
         "hero_desc": "As Cukurova Vida, we supply standard and custom fasteners required by the manufacturing industry and enterprises from our reliable manufacturer network. While providing direct factory-to-address delivery solutions for large volume orders, we execute a direct and transparent process without losing time for urgent needs through our flexible inventory management.",
@@ -231,6 +232,9 @@
         "placeholder_notes": "You can specify custom coating (Galvanization) or grade (10.9) requirements if any...",
         "btn_submit_form": "REQUEST PROPERTY & PRICE QUOTE",
         "map_main_title": "Our Operational Hub",
-        "map_main_desc": "We manage direct and fast shipments to all construction sites across Turkey from our central office in Seyhan, Adana."
+        "map_main_desc": "We manage direct and fast shipments to all construction sites across Turkey from our central office in Seyhan, Adana.",
+        "footer_kvkk": "KVKK / GDPR Clarification Text",
+        "footer_privacy": "Privacy Policy",
+        "form_kvkk_check": "I have read, understood, and agree to the KVKK Clarification Text."
     }
 }

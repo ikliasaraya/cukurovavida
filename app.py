@@ -153,6 +153,15 @@ def product_detail(urun_id):
         return render_template('product_detail.html', product=selected_product)
     else:
         return "Aradığınız ürün bulunamadı.", 404
+    
+# 6. KVKK ve Gizlilik Politikası
+@app.route('/kvkk')
+def kvkk():
+    return render_template('kvkk.html')
+
+@app.route('/gizlilik')
+def gizlilik():
+    return render_template('gizlilik.html')
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=5000)

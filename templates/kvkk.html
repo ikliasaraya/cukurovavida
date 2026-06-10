@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ t.footer_kvkk }} | Çukurova Vida{% endblock %}
+{% block content %}
+<section class="product-detail-section" style="padding-top: 120px;">
+    <div class="container">
+        <div class="form-title-area" style="margin-bottom: 40px;">
+            <h1 style="font-size: 32px; font-weight: 900; color: var(--dark-anthracite);">{{ t.footer_kvkk }}</h1>
+            <div style="width: 60px; height: 4px; background-color: var(--primary-blue); margin-top: 16px;"></div>
+        </div>
+        
+        <div class="contact-form-panel-p" style="background-color: var(--white); padding: 40px; border-radius: 8px; font-size: 15px; line-height: 1.8; color: #475569;">
+            {% if current_lang == 'en' %}
+                <h3>1. Data Controller</h3>
+                <p>As <strong>SER Harita Mühendislik Gayrimenkul Değerleme Danışmanlık İnş. Mak. İth. İhr. San. ve Tic. Ltd. Şti.</strong> (operating under the brand "Çukurova Vida"), we show utmost sensitivity to the security of your personal data. Your personal data is processed and stored in accordance with the Personal Data Protection Law No. 6698 ("KVKK").</p>
+                
+                <h3 style="margin-top: 24px;">2. Purpose of Processing Personal Data</h3>
+                <p>Your name, surname, company name, phone number, and email address collected through our contact and quote forms are processed exclusively for the purposes of evaluating your project quote requests, communicating lead times, and managing the B2B supply chain.</p>
+                
+                <h3 style="margin-top: 24px;">3. Transfer of Personal Data</h3>
+                <p>Your personal data is never shared with third parties for marketing or advertising purposes. It may only be shared with legally authorized public institutions when required by law.</p>
+            
+                <h3 style="margin-top: 24px;">4. Rights of the Data Subject</h3>
+                <p>In accordance with Article 11 of the KVKK, you have the right to request information regarding the processing of your personal data, request correction of inaccurate data, and request deletion or destruction of your data when legal conditions are met. You can forward these requests directly to our company via our contact channels.</p>
+            
+                {% else %}
+                <h3>1. Veri Sorumlusu</h3>
+                <p><strong>SER Harita Mühendislik Gayrimenkul Değerleme Danışmanlık İnş. Mak. İth. İhr. San. ve Tic. Ltd. Şti.</strong> ("Çukurova Vida" markası) olarak kişisel verilerinizin güvenliğine en üst düzeyde hassasiyet göstermekteyiz. Kişisel verileriniz 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca işlenmekte ve muhafaza edilmektedir.</p>
+                
+                <h3 style="margin-top: 24px;">2. Kişisel Verilerin İşlenme Amacı</h3>
+                <p>İletişim ve teklif formlarımız aracılığıyla toplanan ad, soyad, firma ünvanı, telefon ve e-posta bilgileriniz; tamamen projelerinize özel fiyat tekliflerinin hazırlanması, termin sürelerinin bildirilmesi ve B2B tedarik operasyonlarının yürütülmesi amacıyla işlenmektedir.</p>
+                
+                <h3 style="margin-top: 24px;">3. Kişisel Verilerin Aktarılması</h3>
+                <p>Toplanan kişisel verileriniz, hiçbir şekilde pazarlama veya reklam amacıyla üçüncü şahıslara satılmaz ve paylaşılmaz. Yalnızca kanunen yetkili kamu kurumları ile hukuki zorunluluklar dahilinde paylaşılabilir.</p>
+            
+                <h3 style="margin-top: 24px;">4. Veri Sahibinin Hakları (KVKK Madde 11)</h3>
+                <p>Kanun'un 11. maddesi uyarınca; kişisel verilerinizin işlenip işlenmediğini öğrenme, amacına uygun kullanılıp kullanılmadığını bilme, eksik veya yanlış işlenmişse düzeltilmesini ve kanuni şartlar gerçekleştiğinde silinmesini talep etme hakkına sahipsiniz. Bu taleplerinizi iletişim sayfamızdaki kanallar üzerinden şirketimize doğrudan iletebilirsiniz.</p>
+
+                {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

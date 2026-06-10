@@ -129,10 +129,14 @@
         </div>
 
         <div class="footer-bottom">
-            <div class="container">
-                <p>{{ t.copyright }}</p>
-            </div>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <p style="margin: 0;">{{ t.copyright }}</p>
+        <div class="legal-links" style="display: flex; gap: 20px;">
+            <a href="/kvkk?lang={{ current_lang }}" style="color: #64748B; text-decoration: none; font-size: 13px; transition: color 0.2s ease;">{{ t.footer_kvkk }}</a>
+            
         </div>
+    </div>
+</div>
     </footer>
 
     <button id="backToTop" class="back-to-top" title="Yukarı Çık">
